@@ -1,6 +1,6 @@
 package ar.com.ada.api.noaa.entities;
 
-import java.sql.Date;
+import java.util.Date;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;

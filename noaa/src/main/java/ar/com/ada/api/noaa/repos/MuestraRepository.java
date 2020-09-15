@@ -4,10 +4,10 @@ import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import ar.com.ada.api.noaa.entities.Boya;
+import ar.com.ada.api.noaa.entities.Muestra;
 
 @Repository
-public interface BoyaRepository extends MongoRepository<Boya, ObjectId> {
+public interface MuestraRepository extends MongoRepository<Muestra, ObjectId> {
 
-    Boya findBy_id(ObjectId id);
+    Muestra findBy_id(ObjectId id);
 }

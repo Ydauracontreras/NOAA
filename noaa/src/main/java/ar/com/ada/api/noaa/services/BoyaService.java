@@ -1,6 +1,5 @@
 package ar.com.ada.api.noaa.services;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.noaa.entities.Boya;
-import ar.com.ada.api.noaa.entities.Muestra;
 import ar.com.ada.api.noaa.repos.BoyaRepository;
 
 @Service
@@ -40,26 +38,14 @@ public class BoyaService {
         return boyaRepository.findAll();
     }
 
-    public Boya BuscarBoyaPorId(ObjectId id) {
-        Optional<Boya> boya = boyaRepository.findById(id);
-        if (boya.isPresent())
-            return boya.get();
-        return null;
+    public Boya buscarBoyaPorId(ObjectId id) {
+        Optional<Boya> boya = this.listarBoyas().stream().filter(b -> b.get_id().equals(id)).findFirst();
+        return (boya.isPresent() ? boya.get() : null);
 
     }
 
-    public Muestra crearMuestra(ObjectId id, Date horario, String matricula, Double longitud, Double latitud,
-            Double alturaNivelMar) {
-        Muestra muestra = new Muestra();
-        Boya boya = this.BuscarBoyaPorId(id);
-        muestra.setHoraMuestra(horario);
-        muestra.setMatriculaEmbarcacion(matricula);
-        muestra.setLongitud(longitud);
-        muestra.setLatitud(latitud);
-        muestra.setAlturaNivelMar(alturaNivelMar);
-        boya.getMuestras().add(muestra);
-        grabar(boya);
-        return muestra;
+    public Boya boyaPorId(ObjectId id) {
+        return boyaRepository.findBy_id(id);
 
     }
 

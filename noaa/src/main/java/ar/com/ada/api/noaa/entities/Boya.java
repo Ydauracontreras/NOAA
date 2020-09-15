@@ -3,6 +3,8 @@ package ar.com.ada.api.noaa.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,6 +14,7 @@ public class Boya {
     private String colorLuz;
     private Double longitudInstalacion;
     private Double latitudInstalacion;
+    @JsonIgnore
     private List<Muestra> muestras = new ArrayList<>();
 
     /**
@@ -68,10 +71,7 @@ public class Boya {
      */
     public void setMuestras(List<Muestra> muestras) {
         this.muestras = muestras;
-    }
 
-    public Object getColor() {
-        return null;
     }
 
     /**
